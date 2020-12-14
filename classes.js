@@ -159,9 +159,7 @@ class Machine {
 
   makeWidgets(number) {
     this.widgets_made_count += number;
-    if (this.widgets_made_count / 50 === 1) {
-      this.wear_and_tear_count += 1;
-    }
+    this.wear_and_tear_count += Math.floor(number / 50);
   }
 
   fixMachine() {
@@ -169,10 +167,9 @@ class Machine {
   }
 
   reboot() {
-    return function () {
+    return () => {
       this.wear_and_tear_count -= 10;
       this.needs_reboot = false;
     }
   }
 }
-
